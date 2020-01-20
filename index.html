@@ -5,31 +5,46 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<title>网页开发测试页面</title>
-		<meta name="description" content="页面测试专用" />
-		<meta name="keywords" content="没有keywords">
 		<link href="" type="image/x-icon" rel="shortcut icon">
-		<link rel="bookmark" href="">
-		<link rel="apple-touch-icon" tets="tet" href="">
 		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+				overflow-x: hidden;
+			}
 			
+			#wrapper {
+				height: 100%;
+				background: #4CAF50;
+			}
+			input{
+				width: 100%;
+				font-size: 18px;
+			}
 		</style>
 	</head>
 
 	<body>
-		<p>1.选择图片+拍照</p>
-		<input type="file" accept="image/*"  />
-		
-		<p>2.直接拍照</p>
-		<input type="file" accept="image/*" capture="camera"  />
+		<div id="wrapper">
+			<input type="text" placeholder="1点我输入" name="text" id="text" value="" />
+			
+		</div>
+			<input type="text" placeholder="2点我输入" name="text" id="text" value="" />
+		<div id="blurClick"></div>
 	</body>
+	<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
-		function inputBlur() {
-			let OS = navigator.userAgent.toLocaleLowerCase();
-			if(OS.match('micromessenger') && OS.match('iphone')) {
-				window.scrollTo(0, 0);
-				//alert('ios')
-			}
-		}
+		$(function() {
+			$('input').on('blur', function() {
+				console.log('blur')
+				
+				let OS = navigator.userAgent.toLowerCase();
+				if(OS.match('micromessenger') && OS.match('iphone')) {
+					$('#blurClick').click();
+				}
+			});
+		})
 	</script>
 
 </html>
