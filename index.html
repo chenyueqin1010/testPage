@@ -29,11 +29,13 @@
 		<div id="wrapper">
 			<input type="text" placeholder="1点我输入" name="text" id="text" value="" />
 			
+			<button id="previewFile">企业微信文件预览</button>
 		</div>
 			<input type="text" placeholder="2点我输入" name="text" id="text" value="" />
 		<div id="blurClick"></div>
 	</body>
-	<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+	<script src="jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('input').on('blur', function() {
@@ -43,6 +45,14 @@
 				if(OS.match('micromessenger') && OS.match('iphone')) {
 					$('#blurClick').click();
 				}
+			});
+			
+			$('#previewFile').click(function(){
+				wx.previewFile({
+				    url: 'word.docx', // 需要预览文件的地址(必填，可以使用相对路径)
+				    name: '', // 需要预览文件的文件名(不填的话取url的最后部分)
+				    size: 12258 // 需要预览文件的字节大小(必填)
+				});
 			});
 		})
 	</script>
