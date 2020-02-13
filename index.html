@@ -18,7 +18,8 @@
 				height: 100%;
 				background: #4CAF50;
 			}
-			input{
+			
+			input {
 				width: 100%;
 				font-size: 18px;
 			}
@@ -28,10 +29,11 @@
 	<body>
 		<div id="wrapper">
 			<input type="text" placeholder="1点我输入" name="text" id="text" value="" />
-			
+
 			<button id="previewFile">企业微信文件预览</button>
+			<button id="previewImg">企业微信图片预览</button>
 		</div>
-			<input type="text" placeholder="2点我输入" name="text" id="text" value="" />
+		<input type="text" placeholder="2点我输入" name="text" id="text" value="" />
 		<div id="blurClick"></div>
 	</body>
 	<script src="jquery-2.1.0.js" type="text/javascript" charset="utf-8"></script>
@@ -40,20 +42,31 @@
 		$(function() {
 			$('input').on('blur', function() {
 				console.log('blur')
-				
+
 				let OS = navigator.userAgent.toLowerCase();
 				if(OS.match('micromessenger') && OS.match('iphone')) {
 					$('#blurClick').click();
 				}
 			});
-			
-			$('#previewFile').click(function(){
+
+			$('#previewFile').click(function() {
+				if(!wx.previewFile){
+					alert('无此方法')
+					return;
+				}
 				wx.previewFile({
-				    url: 'word.docx', // 需要预览文件的地址(必填，可以使用相对路径)
-				    name: '', // 需要预览文件的文件名(不填的话取url的最后部分)
-				    size: 12258 // 需要预览文件的字节大小(必填)
+					url: 'word.docx', // 需要预览文件的地址(必填，可以使用相对路径)
+					name: '', // 需要预览文件的文件名(不填的话取url的最后部分)
+					size: 12258 // 需要预览文件的字节大小(必填)
 				});
 			});
+
+			$('#previewImg').click(function() {
+				wx.previewImage({
+					current: '1.jpg', // 当前显示图片的http链接
+					urls: ['1.jpg'] // 需要预览的图片http链接列表
+				});
+			})
 		})
 	</script>
 
