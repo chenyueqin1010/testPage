@@ -31,20 +31,56 @@
 			<input type="text" placeholder="1点我输入" name="text" id="text" value="" />
 		</div>
 		<input type="text" placeholder="2点我输入" name="text" id="text" value="" />
-		<div id="blurClick"></div>
+		<input type="" name="blurClick" id="blurClick" value="1" />
+		<input type="" name="blurClick" id="blurClick" value="2" />
+		<input type="" name="blurClick" id="blurClick" value="43" />
+		<input type="" name="blurClick" id="blurClick" value="4" />
+		<input type="" name="blurClick" id="blurClick" value="5" />
+		<input type="" name="blurClick" id="blurClick" value="4" />
+		<input type="" name="blurClick" id="blurClick" value="5" />
+		<input type="" name="blurClick" id="blurClick" value="6" />
+		<input type="" name="blurClick" id="blurClick" value="7" />
+		<input type="" name="blurClick" id="blurClick" value="8" />
+		<input type="" name="blurClick" id="blurClick" value="9" />
+		<input type="" name="blurClick" id="blurClick" value="0" />
+		<input type="" name="blurClick" id="blurClick" value="-" />
+		<input type="" name="blurClick" id="blurClick" value="2" />
+		<input type="" name="blurClick" id="blurClick" value="21" />
+		<input type="" name="blurClick" id="blurClick" value="3" />
+		<input type="" name="blurClick" id="blurClick" value="4" />
+		<input type="" name="blurClick" id="blurClick" value="5" />
 	</body>
 	<script src="../public/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 	<script src="../public/js/vconsole.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript">
 		$(function() {
-			$('input').on('blur', function() {
-				console.log('blur')
+			let isReset = true;
+			let OS = navigator.userAgent.toLowerCase();
+			let iosVersion = OS.split('iphone os ')[1].split('_')[0]
+			if(OS.match('micromessenger') && OS.match('iphone') && iosVersion == 13) {
+				document.body.addEventListener('focusin', function() {
+					isReset = false;
+				})
 
+				document.body.addEventListener('focusout', function() {
+					isReset = true;
+					setTimeout(function() {
+						if(isReset) {
+							window.scroll(0, 0)
+						}
+					}, 300)
+				})
+
+			}
+			/*$('input').on('blur', function() {
 				let OS = navigator.userAgent.toLowerCase();
-				if(OS.match('micromessenger') && OS.match('iphone')) {
-					$('#blurClick').click();
+				let iosVersion = OS.split('iphone os ')[1].split('_')[0]
+				if(OS.match('micromessenger') && OS.match('iphone')&&iosVersion==13) {
+//					window.scrollTo(0,0)
+					
+					
 				}
-			});
+			});*/
 
 			var vConsole = new VConsole();
 		});
