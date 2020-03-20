@@ -35,6 +35,7 @@
 	width: 100%;
 	display: block;
 	pointer-events: all;
+	user-select: all ;
 }
 
 .controls {
