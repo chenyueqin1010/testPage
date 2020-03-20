@@ -35,8 +35,9 @@
 	width: 100%;
 	display: block;
 	pointer-events: auto;
-	user-select: auto ;
+	user-select: auto;
 	-webkit-user-select: auto;
+	-webkit-touch-callout: default;
 }
 
 .controls {
