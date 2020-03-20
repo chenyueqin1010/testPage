@@ -34,8 +34,9 @@
 .stack__item img {
 	width: 100%;
 	display: block;
-	pointer-events: all;
-	user-select: all ;
+	pointer-events: auto;
+	user-select: auto ;
+	-webkit-user-select: auto;
 }
 
 .controls {
