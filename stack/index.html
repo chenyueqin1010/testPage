@@ -8,6 +8,18 @@
 		<link rel="stylesheet" type="text/css" href="css/default.css" />
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr-custom.js"></script>
+		<style>
+			.controls{
+				position: absolute;
+				width: 100%;
+				top: 40%;
+				display: flex;
+				justify-content: space-between;
+			}
+			.button{
+				margin: 0;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="container">
@@ -40,12 +52,12 @@
 
 				let startPoint = 0;
 
-				document.querySelector('#stack_iman').addEventListener('touchstart', function(e) {
+				document.getElementById('stack_iman').addEventListener('touchstart', function(e) {
 					let E = e || window.event;
 					startPoint = E.touches[0];
 				})
 
-				document.querySelector('#stack_iman').addEventListener('touchend', function(e) {
+				document.getElementById('stack_iman').addEventListener('touchend', function(e) {
 					let E = e || window.event;
 					let endPoint = E.changedTouches[0];
 					let x = endPoint.clientX - startPoint.clientX;
