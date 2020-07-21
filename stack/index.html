@@ -1,0 +1,98 @@
+<!!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>堆叠卡片切换</title>
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/component.css" />
+		
+		<style>
+			.controls{
+				position: absolute;
+				width: 100%;
+				top: 40%;
+				display: flex;
+				justify-content: space-between;
+			}
+			.button{
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="content color-6">
+				<h2 class="content__title" style="color: white;">v 1.5</h2>
+				<ul id="stack_iman" class="stack stack--iman">
+					<li class="stack__item"><img class="imgs" src="" alt="Tree 1" /></li>
+					<li class="stack__item"><img class="imgs" src="" alt="Tree 2" /></li>
+					<li class="stack__item"><img class="imgs" src="" alt="Tree 3" /></li>
+					<li class="stack__item"><img class="imgs" src="" alt="Tree 4" /></li>
+					<!-- <li class="stack__item"><img src="img/6.png" alt="Tree 6" /></li>
+					<li class="stack__item"><img src="img/1.png" alt="Tree 1" /></li>
+					<li class="stack__item"><img src="img/2.png" alt="Tree 2" /></li>
+					<li class="stack__item"><img src="img/3.png" alt="Tree 3" /></li>
+					<li class="stack__item"><img src="img/4.png" alt="Tree 4" /></li>
+					<li class="stack__item"><img src="img/5.png" alt="Tree 5" /></li> -->
+				</ul>
+				<div class="controls">
+					<button class="button button--sonar button--reject" data-stack="stack_iman"><i class="fa fa-times"><</i><span class="text-hidden">Reject</span></button>
+					<button class="button button--sonar button--accept" data-stack="stack_iman"><i class="fa fa-check">></i><span class="text-hidden">Accept</span></button>
+				</div>
+			</div>
+		</div>
+		<script src="js/modernizr-custom.js"></script>
+		<script src="js/classie.js"></script>
+		<script src="js/dynamics.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/img.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			(function() {
+				document.getElementsByClassName('imgs')[0].setAttribute('src',imgs[0])
+				document.getElementsByClassName('imgs')[1].setAttribute('src',imgs[1])
+				document.getElementsByClassName('imgs')[2].setAttribute('src',imgs[2])
+				document.getElementsByClassName('imgs')[3].setAttribute('src',imgs[3])
+				
+				setTimeout(function(){
+					var iman = new Stack(document.getElementById('stack_iman'), {
+						visible: 3,
+						infinite: true
+					});
+
+					let startPoint = 0;
+
+					document.getElementById('stack_iman').addEventListener('touchstart', function(e) {
+						let E = e || window.event;
+						startPoint = E.touches[0];
+					})
+
+					document.getElementById('stack_iman').addEventListener('touchend', function(e) {
+						let E = e || window.event;
+						let endPoint = E.changedTouches[0];
+						let x = endPoint.clientX - startPoint.clientX;
+						let y = endPoint.clientY - startPoint.clientY;
+
+						if (Math.abs(x) > 30) {
+							if (x > 0) {
+								iman.accept();
+							} else {
+								iman.reject()
+							}
+						}
+					})
+
+					
+
+					document.querySelector('.button--accept[data-stack = stack_iman]').addEventListener('click', function() {
+						iman.accept();
+					});
+					document.querySelector('.button--reject[data-stack = stack_iman]').addEventListener('click', function() {
+						iman.reject();
+					});
+				},100)
+
+			})();
+		</script>
+	</body>
+</html>
