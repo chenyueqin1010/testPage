@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>H5唤端测试</title>
+	</head>
+	<body>
+		<button type="button" onclick="callApp()">立即打开</button>
+
+		<script src="https://unpkg.com/callapp-lib@3.1.2/dist/index.umd.js"></script>
+		<script src=" http://wechatfe.github.io/lib/vconsole/3.9.0/vconsole.min.js" type="text/javascript"
+			charset="utf-8"></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				const vConsole = new VConsole();
+				const ua = navigator.userAgent.toLowerCase();
+				const $isIOS = ua.indexOf('iphone') > -1;
+				const scheme = $isIOS ? 'com.pdsb.pingdingshanbank://' : 'pdsbank://wap.pdsbank.com.cn/awakeapp';
+				const appStore = 'https://apps.apple.com/cn/app/平顶山银行/id922897049';
+				const downloadUrl = $isIOS ? 'https://apps.apple.com/cn/app/平顶山银行/id922897049' :
+					'https://ymftest.pdsb.cn:1443/EEA8FAC130930-sit/3.0.6.2/ANDROID/20210927_uat_d_3.0.6.2.apk';
+				const options = {
+					scheme: {
+						protocol: scheme
+					},
+					appstore: appStore
+				};
+				console.log(options)
+				const callLib = new CallApp(options);
+
+				window.callApp = function() {
+					callLib.open({
+						path: '', //打开特定页面
+						callback: function() {
+							console.log('唤端失败了。。。')
+							location.href = downloadUrl;
+						}
+					})
+				}
+			}
+		</script>
+	</body>
+</html>
