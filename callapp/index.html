@@ -9,8 +9,8 @@
 	<body>
 		<button type="button" onclick="callApp()">立即打开</button>
 
-		<script src="https://unpkg.com/callapp-lib@3.1.2/dist/index.umd.js"></script>
-		<script src=" http://wechatfe.github.io/lib/vconsole/3.9.0/vconsole.min.js" type="text/javascript"
+		<script src="callapp.js"></script>
+		<script src="vconsole.min.js" type="text/javascript"
 			charset="utf-8"></script>
 		<script type="text/javascript">
 			window.onload = function() {
@@ -27,7 +27,6 @@
 					},
 					appstore: appStore
 				};
-				console.log(options)
 				const callLib = new CallApp(options);
 
 				window.callApp = function() {
