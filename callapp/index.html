@@ -32,6 +32,7 @@
 				window.callApp = function() {
 					callLib.open({
 						path: '', //打开特定页面
+                                                timeout: 5000,//打开超时时间
 						callback: function() {
 							console.log('唤端失败了。。。')
 							location.href = downloadUrl;
