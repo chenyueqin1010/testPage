@@ -39,10 +39,11 @@
 				margin-top: 100px;
 			}
 
-			.text {
+			#text {
 				margin-top: 35px;
 				color: white;
 				text-align: left;
+				display: none;
 			}
 		</style>
 	</head>
@@ -51,7 +52,7 @@
 			<img id="img" src="img/app-logo.png" alt="img" />
 			<br />
 			<a class="btn" id="download" title="下载" href="javascript:void(0)">立即下载</a>
-			<div class="text">注意：ios用户需要通过pp助手或者爱思助手等第三方软件安装</div>
+			<div id="text">注意：ios用户需要通过pp助手或者爱思助手等第三方软件安装</div>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -62,7 +63,7 @@
 
 		var u = navigator.userAgent;
 
-		u.match('iPhone') && (url = iosUrl);
+		u.match('iPhone') && (url = iosUrl) && (document.querySelector('#text').style.display = 'block');
 
 		dom.onclick = function() {
 			window.open(url);
