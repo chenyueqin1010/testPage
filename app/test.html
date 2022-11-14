@@ -7,10 +7,14 @@
 	<title>Document</title>
 </head>
 <body>
-	<button onClick="go()">打开网页</button>
-	<button onClick="scanPlus()">plus scan</button>
-	<button onClick="scanUni()">uni scan</button>
+	<button onClick="flesh()">Flesh</button>
+	<button onClick="go()">New Page</button>
+	<button onClick="scanPlus()">Plus Scan</button>
+	<button onClick="scanUni()">Uni Scan</button>
 	<script>
+		function flesh(){
+			location.reload();
+		}
 		function go(){
 			plus.runtime.openWeb('https://www.baidu.com')
 		}
