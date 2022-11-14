@@ -31,11 +31,15 @@
 		function scanPlus(){
 			if (!barcode) {
 			  barcode = plus.barcode.create('barcode', [plus.barcode.QR], {
-				top:'0px',
-				left:'0px',
+				top:'0',
+				left:'0',
+				bottom: '0',
+				right: '0',
 				width: '100%',
 				height: '100%',
-				position: 'static'
+				position: 'fixed',
+				frameColor: '#3c9cff',
+				scanbarColor: '#3c9cff',
 			  });
 			  barcode.onmarked = (type,res)=>{
 				barcode.close();
@@ -43,9 +47,27 @@
 			  }//扫码成功
 			  //barcode.onerror = this.onerror//扫码失败
 			  plus.webview.currentWebview().append(barcode);//必要的
+			  createBackView();
 			}
 			barcode.start();
 		}
+		
+		
+		function createBackView() {
+			backVew = new plus.nativeObj.View('backView',        
+				{top:'10px',left:'20px',height:'30px',width:'30px'}
+			);
+			// 注意：当tag为img的时候，src才生效，并且路径需是 ‘_www’ + 根路径；
+			// 可以理解为 _www就是根目录（项目名）
+			backVew.drawText('取消', {}, {size:'16px',color:'#FFFFFF'});
+			backVew.show();
+			backVew.interceptTouchEvent(true);
+			backVew.addEventListener("click", function(e) { //返回按钮
+				barcode.close(); // 关闭扫描界面
+				backVew.close(); // 关闭View控件
+			}, false);
+		}
+
 		
 		plus.key.addEventListener('backbutton', function() {
 			barcode.close() // 监听用户滑动返回按钮时，关闭扫码控件
