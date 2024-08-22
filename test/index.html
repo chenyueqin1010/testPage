@@ -5,25 +5,22 @@
 		<title>web-view测试</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script>
-			//if (navigator.userAgent.indexOf('AliApp') > -1) {
-				//document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
-			//}
+			if (navigator.userAgent.indexOf('AliApp') > -1) {
+				document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
+			}
 		</script>
 	</head>
 	<body>
 		<button onclick="sendData()" style="margin: 5em;">H5 发送postmessage</button>
 		<script>
-
-
-				window.addEventListener('message',e=>{
-
-        alert('from app '+JSON.stringify(e.data))
-
-},false)
-
-			
+			window.onload = function() {
+				// 接收来自小程序的消息。
+				my.onMessage = function(e) {
+					alert('from app '+JSON.stringify(e))
+				}
+			}
 			function sendData(){
-				window.parent.postMessage({
+				my.postMessage({
 					name: "to app"
 				});
 			}
