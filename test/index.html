@@ -23,7 +23,7 @@
 
 			
 			function sendData(){
-				window.postMessage({
+				window.parent.postMessage({
 					name: "to app"
 				});
 			}
