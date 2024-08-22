@@ -6,21 +6,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script>
 			//if (navigator.userAgent.indexOf('AliApp') > -1) {
-				document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
+				//document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
 			//}
 		</script>
 	</head>
 	<body>
 		<button onclick="sendData()" style="margin: 5em;">H5 发送postmessage</button>
 		<script>
-			window.onload = function() {
-				// 接收来自小程序的消息。
-				my.onMessage = function(e) {
-					alert('from app '+JSON.stringify(e))
-				}
-			}
+
+
+				window.addEventListener('message',e=>{
+
+        alert('from app '+JSON.stringify(e.data))
+
+},false)
+
+			
 			function sendData(){
-				my.postMessage({
+				window.postMessage({
 					name: "to app"
 				});
 			}
