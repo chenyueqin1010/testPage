@@ -8,17 +8,20 @@
 </head>
 
 <body>
-	<button onclick="sendData()" style="margin: 5em;">H5 发送postmessage</button>
+	<button onclick="sendData()" style="margin: 5em;">H5发送给uni-app</button>
 	<script>
-		if (navigator.userAgent.indexOf('mPaaSClient') > -1) {
-			document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
-		}
 		window.onload = function () {
 			// 接收来自小程序的消息。
-			window.my && (my.onMessage = function (e) {
-				alert('from app ' + JSON.stringify(e))
-			});
+			// window.my && (my.onMessage = function (e) {
+			// 	alert('from app ' + JSON.stringify(e))
+			// });
 			var vConsole = new window.VConsole();
+
+			uni.postMessage({
+				data: {
+					action: 'message'
+				}
+			});
 		}
 		function sendData() {
 			my.postMessage({
@@ -26,8 +29,9 @@
 			});
 		}
 	</script>
-	<!-- <script src="web-view.min.js"></script> -->
+	<!-- <script src="https://appx/web-view.min.js"></script> -->
 	<script src="vconsole.min.js"></script>
+	<script src="hybrid_html_uni.webview.1.5.5.js"></script>
 </body>
 
 </html>
