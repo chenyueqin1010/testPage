@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>web-view测试</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	</head>
-	<body>
-		<button onclick="sendData()" style="margin: 5em;">H5 发送postmessage</button>
-		<script>
-			window.onload = function() {
-				// 接收来自小程序的消息。
-				window.my && (my.onMessage = function(e) {
-					alert('from app '+JSON.stringify(e))
-				});
-				var vConsole = new window.VConsole();
-			}
-			function sendData(){
-				my.postMessage({
-					name: "to app"
-				});
-			}
-		</script>
-		<script src="web-view.min.js"></script>
-		<script src="vconsole.min.js"></script>
-	</body>
+
+<head>
+	<meta charset="utf-8">
+	<title>web-view测试</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+	<button onclick="sendData()" style="margin: 5em;">H5 发送postmessage</button>
+	<script>
+		if (navigator.userAgent.indexOf('mPaaSClient') > -1) {
+			document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
+		}
+		window.onload = function () {
+			// 接收来自小程序的消息。
+			window.my && (my.onMessage = function (e) {
+				alert('from app ' + JSON.stringify(e))
+			});
+			var vConsole = new window.VConsole();
+		}
+		function sendData() {
+			my.postMessage({
+				name: "to app"
+			});
+		}
+	</script>
+	<!-- <script src="web-view.min.js"></script> -->
+	<script src="vconsole.min.js"></script>
+</body>
+
 </html>
