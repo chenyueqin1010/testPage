@@ -16,16 +16,15 @@
 			// 	alert('from app ' + JSON.stringify(e))
 			// });
 			var vConsole = new window.VConsole();
-
+		}
+		function sendData() {
+			// my.postMessage({
+			// 	name: "to app"
+			// });
 			uni.postMessage({
 				data: {
 					action: 'message'
 				}
-			});
-		}
-		function sendData() {
-			my.postMessage({
-				name: "to app"
 			});
 		}
 	</script>
