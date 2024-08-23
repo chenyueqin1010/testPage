@@ -4,11 +4,6 @@
 		<meta charset="utf-8">
 		<title>web-view测试</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script>
-			if (navigator.userAgent.indexOf('AliApp') > -1) {
-				document.writeln('<script src="index.js"' + '>' + '<' + '/' + 'script>');
-			}
-		</script>
 	</head>
 	<body>
 		<button onclick="sendData()" style="margin: 5em;">H5 发送postmessage</button>
@@ -26,6 +21,7 @@
 				});
 			}
 		</script>
+		<script src="web-view.min.js"></script>
 		<script src="vconsole.min.js"></script>
 	</body>
 </html>
