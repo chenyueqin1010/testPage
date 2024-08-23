@@ -8,29 +8,24 @@
 </head>
 
 <body>
-	<button onclick="sendData()" style="margin: 5em;">H5发送给uni-app 1</button>
+	<button onclick="sendData()" style="margin: 5em;">H5发送给uni-app</button>
 	<script>
 		window.onload = function () {
 			// 接收来自小程序的消息。
-			// window.my && (my.onMessage = function (e) {
-			// 	alert('from app ' + JSON.stringify(e))
-			// });
+			window.my && (my.onMessage = function (e) {
+				alert('from app ' + JSON.stringify(e))
+			});
+
 			var vConsole = new window.VConsole();
 		}
 		function sendData() {
-			// my.postMessage({
-			// 	name: "to app"
-			// });
-			uni.postMessage({
-				data: {
-					action: 'message'
-				}
+			my.postMessage({
+				name: "to app"
 			});
 		}
 	</script>
 	<script src="https://appx/web-view.min.js"></script>
 	<script src="vconsole.min.js"></script>
-	<script src="hybrid_html_uni.webview.1.5.5.js"></script>
 </body>
 
 </html>
