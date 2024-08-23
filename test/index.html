@@ -15,9 +15,10 @@
 		<script>
 			window.onload = function() {
 				// 接收来自小程序的消息。
-				my.onMessage = function(e) {
+				window.my && (my.onMessage = function(e) {
 					alert('from app '+JSON.stringify(e))
-				}
+				});
+				var vConsole = new window.VConsole();
 			}
 			function sendData(){
 				my.postMessage({
@@ -25,5 +26,6 @@
 				});
 			}
 		</script>
+		<script src="vconsole.min.js"></script>
 	</body>
 </html>
