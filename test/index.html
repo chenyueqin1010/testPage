@@ -5,6 +5,11 @@
 	<meta charset="utf-8">
 	<title>web-view测试</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<script>
+		if (navigator.userAgent.indexOf('AlipayClient') > -1 || navigator.userAgent.indexOf('mPaaSClient') > -1) {
+			document.writeln('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
+		}
+	</script>
 </head>
 
 <body>
@@ -24,7 +29,6 @@
 			});
 		}
 	</script>
-	<script src="https://appx/web-view.min.js"></script>
 	<script src="vconsole.min.js"></script>
 </body>
 
